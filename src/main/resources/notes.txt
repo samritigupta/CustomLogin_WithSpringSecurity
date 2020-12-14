@@ -1,0 +1,57 @@
+
+1. Spring provides
+- default login form for authentication
+- can have custom login form
+s1. Modify spring configuration to show custom login form
+s2. develop a controller to show custom login form
+s3. create custom login form
+
+2. Why use context path?
+
+- allow us to dynamically reference context path of application
+- helps to keep links relative to application context path
+- if you change the context path then the links will still work
+- much better than hard coding the context path
+
+3. Errors
+s1. Modify jsp for check for errors
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:if test="${param.error != null}">
+
+			<i class="failed">Sorry! You entered invalid username/password.</i>
+
+		</c:if>
+
+4. Bootstrap
+- Its a framework that add CSS styles and javascript
+- Focus on front-end UI
+- Steps
+1. Modify Form and add support for spring mvc form tags
+2. update form to point to our login processing url
+3. verify form fields for username and password
+4. change the controllers to use our new login form.
+
+5. logout process
+- when a logout is processed, spring security will automatically..
+- Invalidate user http session, remove session cookies, etc
+- send user back to login page
+- append a logout parameter ?logout
+
+6. for adding/display username role  in jsp
+s1.  <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-taglibs</artifactId>
+                <version>5.4.1</version>
+            </dependency>
+
+s2. <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
+s3. <p>
+        		User: <security:authentication property="principal.username" />
+        		<br><br>
+        		Role(s): <security:authentication property="principal.authorities" />
+        	</p>
+
+
+
